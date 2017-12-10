@@ -8,10 +8,14 @@
 
 
 namespace My_Password {
-    struct PACKED(password){
+    struct addpassword {
         eosio::string tag;
         eosio::string content;
         account_name  owner;
     };
+    struct PACKED(password){
+        eosio::string tag;
+        eosio::string content;
+    };    
     using passwords = eosio::table<N(mypassword),N(mypassword),N(passwords),password,char*>;
 }

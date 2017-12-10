@@ -5,10 +5,22 @@
 #include <mypassword.hpp>
 #include <mypassword.gen.hpp>
 namespace My_Password {
-    void apply_add_password(const My_Password::password& newpassword)
+    void apply_add_password(const My_Password::addpassword& newpassword)
     {
         eosio::print("add password");
         eosio::dump(newpassword);
+        eosio::require_auth(newpassword.owner);
+
+        char tmp[1024];
+        int32_t load_len = load_str (newpassword.owner, N(mypassword), N(mypasswords),
+            (char *)newpassword.tag.get_data(), newpassword.tag.get_size(),
+            tmp, 1024);
+        assert(load_len == -1, "password already exists");
+
+        bytes b = eosio::raw::pack(newpassword.content);
+        uint32_t err = store_str( newpassword.owner, N(mypasswords),
+            (char *)newpassword.tag.get_data(), newpassword.tag.get_size(),
+            (char *)b.data, b.len);
     }
 }
 /**
@@ -29,7 +41,7 @@ extern "C" {
        eosio::print( "Hello MyPassword: ", eosio::name(code), "->", eosio::name(action), "\n" );
        if (action == N(addpassword))
        {
-           My_Password::apply_add_password(eosio::current_message<My_Password::password>());
+           My_Password::apply_add_password(eosio::current_message<My_Password::addpassword>());
        }
     }
 
