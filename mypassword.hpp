@@ -13,9 +13,12 @@ namespace My_Password {
         eosio::string content;
         account_name  owner;
     };
+    struct delpassword{
+        eosio::string tag;
+        account_name  owner;
+    };
     struct PACKED(password){
         eosio::string tag;
         eosio::string content;
-    };    
-    using passwords = eosio::table<N(mypassword),N(mypassword),N(passwords),password,char*>;
+    };
 }
