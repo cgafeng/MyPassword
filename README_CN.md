@@ -43,3 +43,8 @@
 
 
 ![](./resource/2.png)
+
+调用更改和删除接口
+
+    ./eosc push message mypassword resetpassword '{"tag":"this is key","content":"this is value by modify","owner":"inita"}' --scope inita --permission inita@active
+    ./eosc push message mypassword delpassword '{"tag":"this is key","owner":"inita"}' --scope inita --permission inita@active
