@@ -26,14 +26,20 @@
 
     ./eosc set contract mypassword ../../contracts/MyPassword/mypassword.wast ../../contracts/MyPassword/mypassword.abi
 
-查看inita账号在合约上存储的内容
+查看inita账号在合约上存储的内容，可以看到内容是空的
 
-    ./eosc get table mypassword inita mypasswords
+    ./eosc get table inita mypassword mypasswords
+
+
+![](./resource/1.png)
 
 向合约发送消息存入键-值对
 
     ./eosc push message mypassword addpassword '{"tag":"this is key","content":"this is value","owner":"inita"}' --scope inita --permission inita@active
 
-再次查看inita账号在合约上存储的内容
+再次查看inita账号在合约上存储的内容，内容已经存入
 
-    ./eosc get table mypassword inita mypasswords
+    ./eosc get table inita mypassword mypasswords
+
+
+![](./resource/2.png)
