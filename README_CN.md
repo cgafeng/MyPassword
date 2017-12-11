@@ -33,7 +33,7 @@
 
 ![](./resource/1.png)
 
-向合约发送消息存入键-值对
+向合约发送消息存入键-值对，"owner"字段表示存入哪个账号，该账号需要提供签名验证，--permission inita@active。如果owner字段账号名为initb，最后参数为--permission initb@active
 
     ./eosc push message mypassword addpassword '{"tag":"this is key","content":"this is value","owner":"inita"}' --scope inita --permission inita@active
 
